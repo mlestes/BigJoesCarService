@@ -26,6 +26,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
     public interface CarDelegate {
         void insertCar(Car car);
         void selectCar(Car car);
+        void deleteCar(Car car);
     }
 
     public CarAdapter(List<Car> carList, CarDelegate carDelegate) {
@@ -64,6 +65,9 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
         holder.binding.tagText.setText(car.getTag());
         holder.binding.priceText.setText(new DecimalFormat("#.##").format(car.getPrice())+"");
         bg.setEnabled(car.isAvailable());
+        holder.binding.deleteButton.setOnClickListener( v -> {
+            carDelegate.deleteCar(car);
+        });
 
     }
 

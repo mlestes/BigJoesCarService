@@ -67,6 +67,21 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.CarDel
         }.start();
     }
 
+    @Override
+    public void deleteCar(Car car) {
+
+        MyLog.logger("Deleting\n" + car.toString());
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                CarDB.getDatabase(MainActivity.this).getDAO().deleteCars(car);
+                readDatabase();
+            }
+        }.start();
+
+    }
+
     private void readDatabase() {
         new Thread() {
             @Override
