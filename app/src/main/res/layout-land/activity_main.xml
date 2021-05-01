@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.MainActivity">
+
+    <fragment
+        android:id="@+id/input_fragment"
+        android:name="com.coolcats.bigjoescarservice.view.InputFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/output_fragment"
+        app:layout_constraintHorizontal_weight=".5"
+        />
+
+    <fragment
+        android:id="@+id/output_fragment"
+        android:name="com.coolcats.bigjoescarservice.view.OutputFragment"
+        android:layout_width="@dimen/null_dp"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toEndOf="@id/input_fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight=".5"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
