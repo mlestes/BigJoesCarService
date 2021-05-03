@@ -27,4 +27,14 @@
         <item name="android:textStyle">bold</item>
         <item name="fontFamily">casual</item>
     </style>
+
+    <style name="MyAlertDialog" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorAccent">@color/white</item>
+        <item name="android:background">@color/gaudyBlue</item>
+        <item name="android:windowBackground">@color/gaudyBlue</item>
+        <item name="fontFamily">casual</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

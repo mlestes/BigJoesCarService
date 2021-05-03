@@ -1,11 +1,18 @@
 package com.coolcats.bigjoescarservice.util;
 
+import android.app.Activity;
+import android.app.Application;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
@@ -65,7 +72,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
         holder.binding.tagText.setText(car.getTag());
         holder.binding.priceText.setText(new DecimalFormat("#.##").format(car.getPrice())+"");
         bg.setEnabled(car.isAvailable());
-        holder.binding.deleteButton.setOnClickListener( v -> {
+        holder.binding.deleteButton.setOnClickListener(v -> {
             carDelegate.deleteCar(car);
         });
 

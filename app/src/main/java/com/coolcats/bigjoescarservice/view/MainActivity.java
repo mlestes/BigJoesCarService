@@ -1,9 +1,13 @@
 package com.coolcats.bigjoescarservice.view;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
+import android.widget.Toast;
 
 import com.coolcats.bigjoescarservice.R;
 import com.coolcats.bigjoescarservice.databinding.ActivityMainBinding;
@@ -71,14 +75,30 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.CarDel
     public void deleteCar(Car car) {
 
         MyLog.logger("Deleting\n" + car.toString());
-        new Thread() {
-            @Override
-            public void run() {
-                super.run();
-                CarDB.getDatabase(MainActivity.this).getDAO().deleteCars(car);
-                readDatabase();
-            }
-        }.start();
+        new AlertDialog
+                .Builder(new ContextThemeWrapper(this, R.style.MyAlertDialog))
+                .setMessage("Are you sure you want to delete this?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(MainActivity.this, "Deleted " + car.getYear() + " " + car.getMake() + " " + car.getModel() + "!", Toast.LENGTH_SHORT).show();
+                        new Thread() {
+                            @Override
+                            public void run() {
+                                super.run();
+                                CarDB.getDatabase(MainActivity.this).getDAO().deleteCars(car);
+                                readDatabase();
+                            }
+                        }.start();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .create().show();
 
     }
 
